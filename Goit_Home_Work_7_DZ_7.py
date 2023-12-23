@@ -112,3 +112,92 @@
 # # do_setup (args_dict)  # виклик функції *do_setup (args_dict)
 
 
+# ================================ Звдання 2 / Task 2 ======================================
+
+# Якщо в нашому пакеті є залежності, щоб він запрацював, потрібно встановити додаткові пакети, треба їх всі прописати в параметрі install_requires:
+
+# from setuptools import setup, find_namespace_packages
+
+# setup(
+#     name='useful',
+#     version='1',
+#     description='Very useful code',
+#     url='http://github.com/dummy_user/useful',
+#     author='Flying Circus',
+#     author_email='flyingcircus@example.com',
+#     license='MIT',
+#     packages=find_namespace_packages(),
+#     install_requires=['markdown']
+# )
+# В цьому прикладі наш пакет буде вимагати встановити спочатку пакет markdown перед встановленням. 
+# Порядок встановлення залежностей визначає сам менеджер пакетів (pip наприклад).
+
+
+# ++++++++++++++++++++++++++++++++++++++Умова / Condition ++++++++++++++++++++++++++++++++++++++++
+
+# Модифікуємо приклад попередньої задачі. Для функції do_setup необхідно передбачити другий параметр, який буде списком залежностей.
+
+# Функція do_setup(args_dict, requires) повинна викликати функцію setup з параметрами зі словника args_dict та параметром install_requires,
+# який набуває значення requires.
+
+# Структура словника для параметра args_dicts має бути наступною
+
+# {
+#     "name": "useful",
+#     "version": "1",
+#     "description": "Very useful code",
+#     "url": "http://github.com/dummy_user/useful",
+#     "author": "Flying Circus",
+#     "author_email": "flyingcircus@example.com",
+#     "license": "MIT",
+#     "packages": ["useful"],
+# }
+
+# ++++++++++++++++++++++++++++++++++  Код /Code  +++++++++++++++++++++++++++++++++++++++++++++++++
+
+# from setuptools import setup
+
+# args_dict = {
+#     "name": "useful",
+#     "version": "1",
+#     "description": "Very useful code",
+#     "url": "http://github.com/dummy_user/useful",
+#     "author": "Flying Circus",
+#     "author_email": "flyingcircus@example.com",
+#     "license": "MIT",
+#     "packages": ["useful"],
+#             }  # Тестовий словник який має структуру яка відповідає умовам завдання.
+
+# def do_setup ( args_dict, requires ) :  # Функція *do_setup ( args_dict )- для виклику функції *setup ( **args_dict )
+#                                     # Приймає Два аргумента, Перший словник *args_dict а інший  - значення *requires які тереба добавити в нашу функцію *septup(**args_dict ) для нового параметру *install_requires
+#                                     # Дане питання закриваэмо ти що просто добавляэмо в наш словник *args_dict який передасться в функцію  do_setup(args_dict, requires) новий ключ *install_requires  і його значення *requires
+#                                     # Добавляємо новий ключ і значення внаш словник методом *імя_словника.update({'ключ': *значення})
+
+#     args_dict.update ( { 'install_requires': requires } ) # Метод .update({'key': value})- записує в наш словник нову пару ключ : значення в кінець словника.
+#                                                           #  args_dict.update({'install_requires': requires}) - в нашому випадку до словника *args_dict в кінці добавить  ключ 'install_requires' з значенням *requires
+
+#     setup ( **args_dict )  # Виклик функції *setup ( **args_dict ) 
+   
+
+
+# def setup ( **_ ) :  # Якщо кількість аргументів і їх імена ,які будуть передані ,наперед невідомо можна їх записати у вигляді  (**_ )
+#                      # Де '**'- множина значень .'_' - одинокий символ підкреслення - це в пайтон позначення будь якої зміної імя якої наперед невідомо.
+
+#     for elemet,value in _.items() :  # Ми можемо також працювати з наперед невизначеним аргументом якщо його тип буде відповідати тому що ми хочемо з ним зробити.
+#                                      # в нашому випадку *setup ( **args_dict ) . **args_dict- це множина типу словник . Тому ми можемо скористатись всіма методами і способами  які достіпні для роботи з словниками
+#                                      # В нашому випадку ми будемо в циклі for проходитись по всіх ключах і значеннях з невідомого наперед словника і принтити ключ і відповідне значення попорядку. 
+#         print ( elemet )  # Принтанути поточний ключ з переданого в функцію словника
+#         print ( value )   # # Принтанути відповідне  поточне значення з переданого в функцію словника . 
+#                             # Принтане всіключі і всі їх значення попорядку . Ключ і відповідне значення бо прінтемо в циклі for де попорядку  перебераємо пари ключ і занчення 
+
+# requires = "fine"  # занчення для перевірки.
+
+# do_setup ( args_dict, requires ) # Виклик функції *do_setup ( args_dict, requires ) 
+
+#  ++++++++++++++++++++++++++++++++++  Код /Code для атопереврки +++++++++++++++++++++++++++++++++++++++++++++++++
+
+# def do_setup ( args_dict, requires ) : 
+
+#     args_dict.update ( { 'install_requires': requires } ) 
+
+#     setup ( **args_dict )
