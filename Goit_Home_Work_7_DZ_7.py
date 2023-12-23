@@ -155,7 +155,7 @@
 
 # ++++++++++++++++++++++++++++++++++  Код /Code  +++++++++++++++++++++++++++++++++++++++++++++++++
 
-# from setuptools import setup
+# from setuptools import setup # для VScode цей імпорт оки непотрібний. Видає зараз помилку мабудь неістальвана ця біліотека наразі в мене.
 
 # args_dict = {
 #     "name": "useful",
@@ -201,3 +201,70 @@
 #     args_dict.update ( { 'install_requires': requires } ) 
 
 #     setup ( **args_dict )
+
+
+
+# ================================ Звдання 3 / Task 3 ======================================
+
+# Якщо наш пакет містить додаток, який можна викликати з консолі, зручно буде додати можливість виклику цього застосування 
+# у будь-якому місці нашої системи з консолі. Для цього у виклику setup додамо ще один параметр — entry_points. 
+# Цей параметр приймає словник, де ми можемо вказати список "точок входу" для ключа console_scripts.
+
+# Наприклад, в нашому пакеті у модулі some_code.py є функція hello_world, яка виводить у консоль повідомлення Hello World!. 
+# Після встановлення пакету ми зможемо у будь-якому місці нашої системи виконати в консолі команду: helloworld і отримаємо у відповідь Hello World!.
+
+# Щоб це працювало в системі Python повинен викликатися при виклику файлів з розширенням .py та setup.py має бути змінений:
+
+# from setuptools import setup, find_namespace_packages
+
+# setup(
+#     name='useful',
+#     version='1',
+#     description='Very useful code',
+#     url='http://github.com/dummy_user/useful',
+#     author='Flying Circus',
+#     author_email='flyingcircus@example.com',
+#     license='MIT',
+#     packages=find_namespace_packages(),
+#     install_requires=['markdown'],
+#     entry_points={'console_scripts': ['helloworld = useful.some_code:hello_world']}
+# )
+# У списку точок входу console_scripts можуть бути виконувані файли (.exe), скрипти Bash, cmd, PowerShell і будь-який інший файл,
+# який операційна система зможе виконати.
+
+
+# ++++++++++++++++++++++++++++++++++++++Умова / Condition ++++++++++++++++++++++++++++++++++++++++
+
+# Продовжуємо модифікувати приклад. Для функції do_setup необхідно передбачити третій параметр, який буде словником, 
+# де ми можемо вказати список "точок входу" для ключа console_scripts.
+
+# Функція do_setup(args_dict, requires, entry_points) повинна викликати функцію setup з параметрами словника args_dict 
+# та параметром install_requires, який набуває значення requires. Третій параметр entry_points приймає словник, 
+# де ми можемо вказати список "точок входу" для ключа console_scripts.
+
+# Структура словника для параметра args_dicts має бути наступною
+
+# {
+#     "name": "useful",
+#     "version": "1",
+#     "description": "Very useful code",
+#     "url": "http://github.com/dummy_user/useful",
+#     "author": "Flying Circus",
+#     "author_email": "flyingcircus@example.com",
+#     "license": "MIT",
+#     "packages": ["useful"],
+# }
+
+
+#  Алгоритм : вирішення просто обновляємо наш словник ще одним новою паролю ключ і значення відповідно до умови завдання.
+# Завдання вчить як маючи почакткове сформоване значення для функції поповнювати новими аргументами за певним шаблоном.
+
+#  ++++++++++++++++++++++++++++++++++  Код /Code для атопереврки +++++++++++++++++++++++++++++++++++++++++++++++++
+
+# def do_setup ( args_dict, requires, entry_points ) :
+#     args_dict.update ( { 'install_requires': requires } ) # записуємо в наш словник в кінці нову пар ключ і значення.
+#     args_dict.update ( { 'entry_points': entry_points } ) # записуємо в наш словник в кінці нову пар ключ і значення.
+#     setup ( **args_dict )  # Викликаєм функцію вже з оновленими аргументами і їх значеннями.
+
+
+# ================================ Звдання 4 / Task 4 ======================================
