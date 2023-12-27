@@ -1326,60 +1326,135 @@
 
 # ++++++++++++++++++++++++++++++++++  Код /Code +++++++++++++++++++++++++++++++++++++++++++++++++
 
-from pathlib import Path # 
+# from pathlib import Path # Імпортуємо з бібліотеки pathlib функцію Path
 
-def get_employees_by_profession ( path, profession ) : # Функція отримує два аргументи. Перший *path шлях до вказаного файла в якому будемо проводити пошук .
-                                                       # Другий  *profession - містить професію яку будемо шукати у файлі. Тип *str .
-                                                       # Зчитуємо наш файл методом .readlines ()-повертає список з рядків файлу.
-                                                       # Шукаємо рядки в яких є нашае слово *profession . Обєднюємо знайдені рядки методом *.join( *list )
-                                                       # Форматуємо утворений рядок згідно умов завдання і повертаємо його з функції.
+# def get_employees_by_profession ( path, profession ) : # Функція отримує два аргументи. Перший *path шлях до вказаного файла в якому будемо проводити пошук .
+#                                                        # Другий  *profession - містить професію яку будемо шукати у файлі. Тип *str .
+#                                                        # Зчитуємо наш файл методом .readlines ()-повертає список з рядків файлу.
+#                                                        # Шукаємо рядки в яких є нашае слово *profession . Обєднюємо знайдені рядки методом *.join( *list )
+#                                                        # Форматуємо утворений рядок згідно умов завдання і повертаємо його з функції.
 
-    list_find_profession = []  # Список в який будемо добавляти знайдені рядки з файлу . Тобто ті в яких буде зустрічатись підрядок з зміної *profession
+#     list_find_profession = []  # Список в який будемо добавляти знайдені рядки з файлу . Тобто ті в яких буде зустрічатись підрядок з зміної *profession
 
-    with open ( path , "r" ) as fhr : # Відкриваємо наш файл на який вказує *path методом контексту *with з параметром *"r" . *"r" - вікрити для читання
+#     with open ( path , "r" ) as fhr : # Відкриваємо наш файл на який вказує *path методом контексту *with з параметром *"r" . *"r" - вікрити для читання
         
-        lines_string = fhr.readlines () # Записуємо в зміну *lines_string список який поверне метод *.readlines (). 
-                                        # Список з всіх рядків з файлу . Кожен рядок буде містити в кінці *'\n'- символ переносу на новий рядок.
+#         lines_string = fhr.readlines () # Записуємо в зміну *lines_string список який поверне метод *.readlines (). 
+#                                         # Список з всіх рядків з файлу . Кожен рядок буде містити в кінці *'\n'- символ переносу на новий рядок.
 
-        #print ( lines_string )
+#         #print ( lines_string )
        
-        for line in lines_string : # Цикл в якому будемо проходитись по списку *lines_string і перевіряти чи містить наш рядок підрядок з зміної *profession
+#         for line in lines_string : # Цикл в якому будемо проходитись по списку *lines_string і перевіряти чи містить наш рядок підрядок з зміної *profession
 
-            if line.find ( profession ) >= 0 : # Перевіряємо чи міститься наш підрядок в поточному рядку чрез метод *.find (*str )
-                                              # Метод *імя_рядка_в_якому_шукаємо_підрядок.find ( *підрядок_який_шукаємо ) - повертає індекс першого входження першого символ у з підрядка у рядку . 
-                                              # Якщо підрядок незнайдений в рядку то повертає *-1 . Тобто якщо метод line.find ( profession ) буде більший - рівний 0 значить метод *.find(*str) - знайшов наш підрядок в поточному рядку.  
+#             if line.find ( profession ) >= 0 : # Перевіряємо чи міститься наш підрядок в поточному рядку чрез метод *.find (*str )
+#                                               # Метод *імя_рядка_в_якому_шукаємо_підрядок.find ( *підрядок_який_шукаємо ) - повертає індекс першого входження першого символ у з підрядка у рядку . 
+#                                               # Якщо підрядок незнайдений в рядку то повертає *-1 . Тобто якщо метод line.find ( profession ) буде більший - рівний 0 значить метод *.find(*str) - знайшов наш підрядок в поточному рядку.  
                           
-                list_find_profession.append ( line ) # Добавляємо наш поточний підрядок в список *list_find_profession Методом *.append ( *дані )
+#                 list_find_profession.append ( line ) # Добавляємо наш поточний підрядок в список *list_find_profession Методом *.append ( *дані )
             
-        #print (list_find_profession)
+#         #print (list_find_profession)
         
-        string_find_profession = "".join ( list_find_profession ) # Склеюємо всі наші рядки з списку *list_find_profession в онин рядок методом *join .
-                                                                # *''.join ( list_find_profession ) 
-                                                                # В нашому випадку склеюємо по символу пустого рядка ''. *'' - пустий рядок (підрядок через який склеювати елементи списку)
-                                                                #  *.join () - сам метод. 
-                                                                #  *list_find_profession - список який терба обєднати в один рядок.
+#         string_find_profession = "".join ( list_find_profession ) # Склеюємо всі наші рядки з списку *list_find_profession в онин рядок методом *join .
+#                                                                 # *''.join ( list_find_profession ) 
+#                                                                 # В нашому випадку склеюємо по символу пустого рядка ''. *'' - пустий рядок (підрядок через який склеювати елементи списку)
+#                                                                 #  *.join () - сам метод. 
+#                                                                 #  *list_find_profession - список який терба обєднати в один рядок.
         
 
-        format_string_find_profession = string_find_profession.replace ( '\n', '' ) # Замініяємо в нашому рядку *string_find_profession всі символи нового  рядка *\n на пустий символ *'' методом *.replace ( *str, *str )
-                                                                                    # метод *імя_рядка.replace ( *підрядок_який_треба_замінити_в_рядку, *підрядок_на_який_міняємо)
-                                                                                    # В *format_string_find_profession буде міститись наш рядко без символів *'\n'
+#         format_string_find_profession = string_find_profession.replace ( '\n', '' ) # Замініяємо в нашому рядку *string_find_profession всі символи нового  рядка *\n на пустий символ *'' методом *.replace ( *str, *str )
+#                                                                                     # метод *імя_рядка.replace ( *підрядок_який_треба_замінити_в_рядку, *підрядок_на_який_міняємо)
+#                                                                                     # В *format_string_find_profession буде міститись наш рядко без символів *'\n'
 
-        format_string_find_profession = format_string_find_profession.replace ( profession , '' ) # В *format_string_find_profession буде міститись наш рядок без підрядка з *profession
+#         format_string_find_profession = format_string_find_profession.replace ( profession , '' ) # В *format_string_find_profession буде міститись наш рядок без підрядка з *profession
 
-        format_string_find_profession = format_string_find_profession.strip() # Видаляємо можливі зайві пробіли з нашого рядка *format_string_find_profession за допомогою методу *.strip() 
-                                                                              # Метод *.strip(*str) - видаляє з початку і з кінця рядка вказаний пірядок . Якщо підрядок невказаний видаляє символи пробілів *" ". 
-        #print (format_string_find_profession)
+#         format_string_find_profession = format_string_find_profession.strip() # Видаляємо можливі зайві пробіли з нашого рядка *format_string_find_profession за допомогою методу *.strip() 
+#                                                                               # Метод *.strip(*str) - видаляє з початку і з кінця рядка вказаний пірядок . Якщо підрядок невказаний видаляє символи пробілів *" ". 
+#         #print (format_string_find_profession)
 
-        return format_string_find_profession  #  Повертаємо з фінкції наш відформатований рядок згідно умов завдання.
+#         return format_string_find_profession  #  Повертаємо з фінкції наш відформатований рядок згідно умов завдання.
     
 
 
 
-path = Path ( "Task_13_employees_by_profession.txt" )  # Шлях на файл з якого зчитуємо інофрмацію
+# path = Path ( "Task_13_employees_by_profession.txt" )  # Шлях на файл з якого зчитуємо інофрмацію
 
-# profession = "courier"  # # Тестове знвчення
+# # profession = "courier"  # # Тестове знвчення
 
-profession = "cook"  # Тестове знвчення
+# profession = "cook"  # Тестове знвчення
 
-print (  get_employees_by_profession ( path, profession ) )  # Принтимо результат роботи функції з тестових значень.
+# print (  get_employees_by_profession ( path, profession ) )  # Принтимо результат роботи функції з тестових значень.
+
+
+# ================================ Звдання 14 / Task 14 ======================================
+
+#===================== Робота з файлами , ЗМІНА ФАЙЛІВ. =============
+
+# ++++++++++++++++++++++++++++++++++++++ Умова / Condition ++++++++++++++++++++++++++++++++++++++++
+
+# Напишіть функцію to_indexed(source_file, output_file), яка зчитуватиме вміст файлу, 
+# додаватиме до прочитаних рядків порядковий номер і зберігати їх у такому вигляді у новому файлі.
+
+# Кожний рядок у створеному файлі повинен починатися з його номера, двокрапки та пробілу, після чого має йти текст рядка з вхідного файлу.
+
+# Нумерація рядків іде від 0.
+
+# ++++++++++++++++++++++++++++++++++  Код /Code +++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+from pathlib import Path # Імпортуємо з бібліотеки pathlib функцію Path
+
+def to_indexed ( source_file, output_file ) :  # Функція  яка зчитуватиме вміст файлу на який вказує *source_file, 
+                                               # додаватиме до прочитаних рядків порядковий номер і зберігати їх у такому вигляді у новому файлі на який вказує *output_file.
+    
+    with open ( source_file, "r" ) as fhr :  # Відкрити файл на який вказує шлях *source_file для читання . Після завершення всіх маніпуляції закрити.
+        
+        lines_string = fhr.readlines ()   # Зчитуємо всі наші рядки з файлу за допомогою методу *.readlines (). Цей метод з читує всі рядки з файлу і повертає спискок де елементом списку є зчитаний рядок.
+                                        #   *lines_string - буде містити спискок рядків з файлу *source_file
+    with open ( output_file, "w" ) as fhw : # Відкрити файл на який вказує шлях *output_file для запису . "w" - параметер відкриває файл для запису . Все що було файлі до того витреться.
+
+        count = 0                          # Лічильник яким будемо ряхувати кількість рядків в файлі *source_file
+        
+        for line in lines_string :  # Цикл в якому будемо проходитись по списку *lines_string - (який містить всі рядки прочитані з *source_file )
+                                    #  і добавляти в поточний рядок на початок індекс рядка після нього відразу двокрапку : і після двокрапки пробіл " "
+                                    # Поточний змінений рядок вілразу записуємо у новий файл.
+           
+            line = f"{count}: {line}" # Формуємо новий рядок для запису у файл *output_file . Приклад вхідний рядок був "John courier" а стане "0: John courier"
+
+            fhw.writelines ( line )   # Записуємо сформаваний рядок у файл методом *.writelines ( *str )
+
+            count += 1  #  Збільшуємо наш лічильник на 1 . Вкінці циклу наш файл закриється вміст збережеться Оскільки ми використали  оператор контексту *with
+          
+
+# ++++++++++++++++++++++++++++++++++  Код /Code який приймає автопереврка . Про те працює на мою думку незовсім коректно бо дописує в кінці останього рядка "{count+1}: "+++++++++++++++++++++++++++++++++++++++++++++++++
+
+# def to_indexed(source_file, output_file):
+#   num_str = 0
+#   out = []
+#   with open(source_file, 'r') as hfr:
+#     while True:
+#       try:
+#         output_str = hfr.readline()
+#         if not output_str:
+#           break
+#       except:
+#         return None
+#       finally:
+#         try:
+#           out.append(str(num_str)+': '+output_str)
+#         except:
+#           return None
+#       num_str += 1
+#   with open(output_file, 'w') as hfw:
+#     for line in out:
+#       hfw.write(line)
+  
+#   return True
+
+source_file = Path ( 'Task_14_source_file.txt' )  # Шлях до тестовго файла з якого читаємо  
+
+output_file = Path ( 'Task_14_output_file.txt' )  # Шлях до тестовго файла в який записуємо
+
+
+to_indexed ( source_file, output_file ) # Виклик функції *to_indexed ( source_file, output_file ) . функція нічого не повертає тому непринтемо.
+
+
 
